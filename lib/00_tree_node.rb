@@ -1,3 +1,5 @@
+# lib/00_tree_node.rb
+
 class PolyTreeNode
 
   def initialize(value)
@@ -33,8 +35,13 @@ class PolyTreeNode
     child_node.parent = nil
   end
 
+  def dfs(target_value)
+    return self if target_value == @value
+    @children.each do |child|
+      deeper_search = child.dfs(target_value)
+      return deeper_search unless deeper_search == nil
+    end
+    nil
+  end
 
 end
-
-
-# lib/00_tree_node.rb

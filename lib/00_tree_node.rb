@@ -1,4 +1,5 @@
 # lib/00_tree_node.rb
+# require "byebug"
 
 class PolyTreeNode
 
@@ -42,6 +43,20 @@ class PolyTreeNode
       return deeper_search unless deeper_search == nil
     end
     nil
+  end
+
+  def bfs(target_value)
+    queue = [self]
+    until queue.empty?
+      next_to_check = queue.shift
+      return next_to_check if next_to_check.value == target_value
+      queue += next_to_check.children
+    end
+    nil
+  end
+
+  def inspect
+    @value.inspect
   end
 
 end
